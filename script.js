@@ -1,4 +1,3 @@
-
 var hour9am = $("#9");
 var hour10am = $("#10");
 var hour11am = $("#11");
@@ -10,29 +9,48 @@ var hour4pm = $("#16");
 var hour5pm = $("#17");
 
 var time = moment();
-var currentTime = 11;
-// moment().format('hA');
-var hours = [9,10,11,12]
+var currentTime = parseInt(moment().format("h"));
 
 
-
-//time from moment JS Below
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
-
-function timeChecker(){
-    for (var index= 0; index < hours.length; index++) {
-        var currentHour= "#" + hours[index]
-        console.log (currentHour)
-        if (currentTime > hours [index] ) {
-            $(currentHour).addClass(".past");
-
-        } if (currentTime < hours [index] ) {
-            $(currentHour).addClass(".future");
-
-        } else {
-            $(currentHour).addClass(".present");
-
-        }
+function timeChecker() {
+  
+  $(".time-block").each(function () {
+    var currentHour = parseInt($(this).attr("id"));
+    if (currentHour < currentTime) {
+      $(this).addClass("past");
     }
+    if (currentHour > currentTime) {
+      $(this).removeClass("past");
+      $(this).addClass("future");
+    } else {
+      $(this).removeClass("past");
+      $(this).removeClass("future");
+      $(this).addClass("present");
+    }
+  });
 }
-timeChecker()
+timeChecker();
+
+function savePlanner() {
+
+    $(".time-block").each(function () {
+        var id = $(this).attr("id");
+        console.log(this)
+        var schedule = localStorage.getItem(id);
+
+        if (schedule !== null) {
+            $(this).children(".schedule").val(schedule);
+        }
+    });
+}
+
+savePlanner();
+var saveBtn = $(".saveBtn");
+
+saveBtn.on("click", function () {
+    var time = $(this).parent().attr("id");
+    var schedule = $(this).siblings(".schedule").val();
+
+    localStorage.setItem(time, schedule);
+});
