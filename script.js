@@ -9,8 +9,8 @@ var hour4pm = $("#16");
 var hour5pm = $("#17");
 
 var time = moment();
-var currentTime = parseInt(moment().format("h"));
-
+var currentTime = parseInt(moment().format("H"));
+console.log(currentTime)
 
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
 function timeChecker() {
@@ -37,10 +37,10 @@ function savePlanner() {
     $(".time-block").each(function () {
         var id = $(this).attr("id");
         console.log(this)
-        var schedule = localStorage.getItem(id);
+        var setSchedule = localStorage.getItem(id);
 
-        if (schedule !== null) {
-            $(this).children(".schedule").val(schedule);
+        if (setSchedule !== undefined) {
+            $(this).children(".schedule").val(setSchedule);
         }
     });
 }
@@ -50,7 +50,7 @@ var saveBtn = $(".saveBtn");
 
 saveBtn.on("click", function () {
     var time = $(this).parent().attr("id");
-    var schedule = $(this).siblings(".schedule").val();
+    var setSchedule = $(this).siblings(".schedule").val();
 
-    localStorage.setItem(time, schedule);
+    localStorage.setItem(time, setSchedule);
 });
