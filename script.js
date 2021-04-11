@@ -1,5 +1,4 @@
 // created seprate intervals to break apart the values of actual time.
-
 var hour9am = $("#9");
 var hour10am = $("#10");
 var hour11am = $("#11");
