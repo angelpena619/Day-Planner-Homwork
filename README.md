@@ -1,5 +1,7 @@
 ## User Story
 
+![](images/day-planner-HW-screenshot.JPG)
+
 ```md
 AS AN employee with a busy schedule
 I WANT to add important events to a daily planner
@@ -24,4 +26,3 @@ WHEN I refresh the page
 THEN the saved events persist
 ```
 
-![](images/day planner HW screenshot.JPG)
